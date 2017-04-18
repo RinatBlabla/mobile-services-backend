@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+<!-- 			<param name="ConversionPattern" value="%-5p: %c - %m%n" /> -->
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="file" class="org.apache.log4j.RollingFileAppender">
+	    <param name="append" value="false" />
+	    <param name="maxFileSize" value="50MB" />
+	    <param name="maxBackupIndex" value="10" />
+	    <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+	    <param name="file" value="${catalina.home}/logs/mobile-services.log" />
+	    <layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern"
+			value="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p %c{1}:%L - %m%n" />
+	    </layout>
+	</appender>
+	
+	<!-- Application Loggers -->
+	<logger name="ru.aisa.OFDserver">
+		<level value="info" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="info" />
+		<appender-ref ref="console" />
+<!-- 		<appender-ref ref="file" /> -->
+	</root>
+	
+</log4j:configuration>
